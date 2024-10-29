@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-column{
+    flex-direction: column;
+}
+
+
+button {
+    margin-top: 5px ;
+    margin-bottom: 5px
+}
+
+body {
+    background-color: beige;
+}
+
+.justify-left {
+    justify-content: left;
+}
+
+select {
+    margin-left: 5px;
+    margin-right: 5px;
+}
