@@ -6,10 +6,11 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <script src="database.js" defer></script>
+    <script src="favourites.js" defer></script>
 </head>
 <body>
     <div class="container flex-column">
-        <h1> random dog generator :D</h1>
+        <h1> woof woof</h1>
 
         <img id="dog-image">
 
@@ -28,15 +29,17 @@
                 <option value="any"> Any </option>
             </select>
         </div>
-"
+
         <button id="random-dog-button"> get random dog </button>
         <button id="favourite-dog"> add to favourites</button>
     </div>
 
 
     <div class="container flex-column">
-        <div> <h2> your favourites </h2></div>
-        <button> download all favourites </button>
+        <div id="favourites-div">
+          <div> <h2> your favourites </h2></div>
+          <button> download all favourites </button>
+        </div>
     </div>
 
     

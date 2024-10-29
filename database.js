@@ -20,21 +20,55 @@ async function fetchBreedPosibilities() {
     }
 }
 
+
+async function subBreedFetchPosibilities() {
+    while (subBreedSelect.options.length >0) {
+        subBreedSelect.remove(0);
+    }
+    // add first options
+    // ========================================================
+    const optionAny = document.createElement("option");
+    optionAny.text = "any";
+    subBreedSelect.options.add(optionAny, "any");
+    // ========================================================
+    
+    if(breedSelect.value === "any") return;
+    // putting subBreedList as a const then getting the api 
+
+    const subBreedListUrl = "https://dog.ceo/api/breed/" +breedSelect.value +"/list";
+
+    const subBreedList = await fetchFromApi(subBreedListUrl);
+
+
+    for (const subBreed of subBreedList) {
+        const newOption = document.createElement("option");
+        newOption.text = subBreed;
+        subBreedSelect.options.add(newOption, subBreed);
+    }
+
+
+
+
+}
+
+
+
 async function fetchRandomDog() {
     let randomDogUrl = "https://dog.ceo/api/breeds/image/random";
-    if (breedSelect.value == "any"){
-        
-        const imageSource = await fetchFromApi(randomDogUrl);
+    if (breedSelect.value !== "any"){
+        randomDogUrl = "https://dog.ceo/api/breed/" +breedSelect.value + "/images/random";
 
-        dogImage.src = imageSource;
-        
-        
-    } else {
-        const randomDogUrl = "https://dog.ceo/api/breed/" +breedSelect.value + "/images/random";
-        const imageSource = await fetchFromApi(randomDogUrl);
-
-        dogImage.src = imageSource;
+        if (subBreedSelect.value !== "any"){
+            randomDogUrl = "https://dog.ceo/api/breed/" + breedSelect.value + "/" +subBreedSelect.value + "/images/random";
+        }
     }
+        
+        const imageSource = await fetchFromApi(randomDogUrl);
+        
+        currentImage = imageSource;
+        dogImage.src = imageSource;
+        
+
 }
 
 
@@ -60,6 +94,7 @@ async function fetchFromApi(url) {
 
 randomDogButton.onclick = fetchRandomDog;
 
+breedSelect.onchange = subBreedFetchPosibilities;
 
 fetchBreedPosibilities();
 
