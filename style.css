@@ -40,3 +40,7 @@ select {
     width: 300px;
     margin: 5px;
 }
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
